@@ -1,0 +1,8 @@
+DATABASE_URL="mysql://root@localhost:3306/mydb"
+
+
+EMAIL_HOST=smtp.gmail.com
+EMAIL_PORT=587
+EMAIL_USER=mapleitpc08@gmail.com
+EMAIL_PASS=
+
