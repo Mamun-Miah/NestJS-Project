@@ -6,13 +6,16 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
+//import PrismaService, EmailService, JwtService
 import { PrismaService } from '../prisma/prisma.service';
+import { EmailService } from '../email/email.service';
+import { JwtService } from '@nestjs/jwt';
+//import DTOs
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
-import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
-import { EmailService } from '../email/email.service';
 import { VerifyOtpDto } from './dto/verify-otp.dto';
+//import bcrypt for hashing passwords
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
