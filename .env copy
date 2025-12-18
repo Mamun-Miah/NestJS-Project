@@ -6,3 +6,4 @@ EMAIL_PORT=587
 EMAIL_USER=mapleitpc08@gmail.com
 EMAIL_PASS=
 
+JWT_SECRET=sgsdgsdgdsfg
