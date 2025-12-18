@@ -11,12 +11,14 @@ import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+import { EmailService } from '../email/email.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private prisma: PrismaService,
     private jwtService: JwtService,
+    private emailService: EmailService,
   ) {}
 
   // REGISTER
@@ -52,6 +54,7 @@ export class AuthService {
 
     // TODO: Send OTP via email (nodemailer)
     console.log('OTP:', otp);
+    await this.emailService.sendOtpEmail(dto.email, otp);
 
     return {
       message: 'Registered successfully. Verify OTP sent to email.',
