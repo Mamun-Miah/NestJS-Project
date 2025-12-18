@@ -12,6 +12,7 @@ import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { EmailService } from '../email/email.service';
+import { VerifyOtpDto } from './dto/verify-otp.dto';
 
 @Injectable()
 export class AuthService {
@@ -62,9 +63,9 @@ export class AuthService {
   }
 
   // VERIFY OTP
-  async verifyOtp(email: string, otp: string) {
+  async verifyOtp(dto: VerifyOtpDto) {
     const user = await this.prisma.user.findUnique({
-      where: { email },
+      where: { email: dto.email },
     });
 
     if (!user) {
@@ -74,7 +75,7 @@ export class AuthService {
     const otpRecord = await this.prisma.otp.findFirst({
       where: {
         userId: user.id,
-        code: otp,
+        code: dto.otp,
         used: false,
         expiresAt: { gt: new Date() },
       },
